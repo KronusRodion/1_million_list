@@ -20,7 +20,7 @@ const generateItems = () => {
     items.push({
       id: i,
       text: `Item ${i}`,
-      checked: Math.random() > 0.5,
+      checked: false,
     });
   }
   return items;
@@ -73,10 +73,6 @@ app.post('/api/items/order', (req, res) => {
   // Удаляем перемещаемый элемент
   const [movedItem] = allItems.splice(movedIndex, 1);
   console.log(movedIndex, targetIndex)
-  // Корректируем индекс вставки при перемещении вниз
-  const insertIndex = (movedIndex < targetIndex) 
-    ? targetIndex - 1 
-    : targetIndex;
 
   // Вставляем элемент на новую позицию
   allItems.splice(targetIndex, 0, movedItem);
